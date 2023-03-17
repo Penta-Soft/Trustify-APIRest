@@ -1,0 +1,3 @@
+[submodule "Trustify-backend"]
+	path = Trustify-backend
+	url = https://github.com/Penta-Soft/Trustify-backend.git
