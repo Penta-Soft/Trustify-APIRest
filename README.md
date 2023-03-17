@@ -26,4 +26,7 @@ Poi eseguire
 - web3j generate solidity -b src/contract/TullioCoin.bin -a src/contract/TullioCoin.abi -o src/main/java -p com.example.Trustifyrestù
 - web3j generate solidity -b src/contract/ReviewHolder.bin -a src/contract/ReviewHolder.abi -o src/main/java -p com.example.Trustifyrest
 
-continua...
+Da questo momento dovrebbero essere comparse delle calssi ReviewHolder.java e TullioCoin.java
+
+per runnare i test usate maven
+prima di tutto però bisogna cambiare la chiave di customerAccountCredential con la prima di ganache dentro il file di test
