@@ -23,10 +23,10 @@ Rinominare i file:
 - `Trustify-backend_Trustify_contracts_ReviewHolder_sol_ReviewHolder.abi` in `Trustify.abi`
 
 Poi eseguire 
-- web3j generate solidity -b src/contract/TullioCoin.bin -a src/contract/TullioCoin.abi -o src/main/java -p com.example.Trustifyrestù
-- web3j generate solidity -b src/contract/ReviewHolder.bin -a src/contract/ReviewHolder.abi -o src/main/java -p com.example.Trustifyrest
+- `web3j generate solidity -b src/contract/TCoin.bin -a src/contract/TCoin.abi -o src/main/java -p com.example.Trustifyrest`
+- `web3j generate solidity -b src/contract/Trustify.bin -a src/contract/Trustify.abi -o src/main/java -p com.example.Trustifyrest`
 
-Da questo momento dovrebbero essere comparse delle calssi ReviewHolder.java e TullioCoin.java
+Da questo momento dovrebbero essere comparse delle calssi Trustify.java e TCoin.java
 
 per runnare i test usate maven
 prima di tutto però bisogna cambiare la chiave di customerAccountCredential con la prima di ganache dentro il file di test
