@@ -26,7 +26,7 @@ Poi eseguire
 - `web3j generate solidity -b src/contract/TCoin.bin -a src/contract/TCoin.abi -o src/main/java -p com.example.Trustifyrest`
 - `web3j generate solidity -b src/contract/Trustify.bin -a src/contract/Trustify.abi -o src/main/java -p com.example.Trustifyrest`
 
-Da questo momento dovrebbero essere comparse delle calssi Trustify.java e TCoin.java
+Da questo momento dovrebbero essere comparse delle classi Trustify.java e TCoin.java
 
 per runnare i test usate maven
 prima di tutto però bisogna cambiare la chiave di customerAccountCredential con la prima di ganache dentro il file di test
