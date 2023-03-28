@@ -1,5 +1,6 @@
 package com.example.Trustifyrest;
 
+import org.web3j.abi.datatypes.Address;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tuples.generated.Tuple2;
@@ -11,11 +12,19 @@ import java.util.List;
 
 public class TrustifyAPIREST {
     private String companyAddress;
-    private String contractAddress = "0x6e6C3db807eE8f981bEF9F644626e7eccB72Ae59";
+    private String contractAddress = "0x34E372937ea37DCd194A3E40c15212984614F715";
     private int startRange, endRange;
-    private Web3j web3j;
+    Web3j web3j;
 
     public TrustifyAPIREST(String companyAddress, int startRange, int endRange) throws Exception {
+        if(startRange < 0)
+            throw new IllegalArgumentException("Error: startRange can not be negative");
+        if(startRange > endRange)
+            throw new IllegalArgumentException("Error: startRange can not be grater that endRange");
+        if(!org.web3j.crypto.WalletUtils.isValidAddress(companyAddress)){
+            throw new IllegalArgumentException("Error: not a valid address");
+        }
+
         this.companyAddress = companyAddress;
         this.startRange = startRange;
         this.endRange = endRange;
