@@ -58,4 +58,28 @@ class TrustifyRestApplicationTests {
 		assertEquals("{\"errorMessage\":\"Error: startRange can not be grater that endRange\"}",result.getResponse().getContentAsString());
 	}
 
+	@Test
+	void Call_for_5_review () throws Exception{
+		final String companyAddress = "/reviews?address=0x20DcB8C5c4C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=4";
+		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
+		MvcResult result = mockMvc.perform(request).andReturn();
+		assertEquals("[{\"text\":\"prova prova SA\",\"stars\":1},{\"text\":\"prova prova SASA\",\"stars\":2},{\"text\":\"prova prova SASASA\",\"stars\":3},{\"text\":\"prova prova SASASASA\",\"stars\":4},{\"text\":\"prova prova SASASASASA\",\"stars\":5}]",result.getResponse().getContentAsString());
+	}
+
+	@Test
+	void Call_for_a_company_without_any_reviews () throws Exception{
+		final String companyAddress = "/reviews?address=0x20DcB1C5c4C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=4";
+		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
+		MvcResult result = mockMvc.perform(request).andReturn();
+		assertEquals("{\"errorMessage\":\"org.web3j.tx.exceptions.ContractCallException: Contract Call has been reverted by the EVM with the reason: 'VM Exception while processing transaction: revert This company have not received any reviews'.\"}",result.getResponse().getContentAsString());
+	}
+
+	@Test
+	void Ask_for_more_than_25_review_per_call() throws Exception{
+		final String companyAddress = "/reviews?address=0x20DcB8C5c4C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=30";
+		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
+		MvcResult result = mockMvc.perform(request).andReturn();
+		assertEquals("{\"errorMessage\":\"Error: you can't ask for more than 25 review per call\"}",result.getResponse().getContentAsString());
+	}
+
 }

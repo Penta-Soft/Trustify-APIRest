@@ -24,6 +24,9 @@ public class TrustifyAPIREST {
         if(!org.web3j.crypto.WalletUtils.isValidAddress(companyAddress)){
             throw new IllegalArgumentException("Error: not a valid address");
         }
+        if((endRange - startRange) > 25){
+            throw new IllegalArgumentException("Error: you can't ask for more than 25 review per call");
+        }
 
         this.companyAddress = companyAddress;
         this.startRange = startRange;
