@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private String contractAddress = "0x902cD937096aB2e7778cb324d074616E590fA72B";
+    private String contractAddress = "0x6014e2410251549281BA1B3789263CD76BD4897e";
     private int startRange, endRange;
     Web3j web3j;
 
