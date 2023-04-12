@@ -14,7 +14,7 @@ public class SmartContractReaderController {
             @RequestParam(value = "address", defaultValue = "") String address,
             @RequestParam(value = "startRange", defaultValue = "1") int startRange,
             @RequestParam(value = "endRange", defaultValue = "10") int endRange) throws Exception {
-        TrustifyAPIREST trustify = new TrustifyAPIREST(address, startRange, endRange);
+        TrustifyContractReader trustify = new TrustifyContractReader(address, startRange, endRange);
 
             return trustify.getReviews();
     }

@@ -1,6 +1,5 @@
 package com.example.Trustifyrest;
 
-import org.web3j.abi.datatypes.Address;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tuples.generated.Tuple2;
@@ -10,13 +9,13 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrustifyAPIREST {
+public class TrustifyContractReader {
     private String companyAddress;
-    private String contractAddress = "0x34E372937ea37DCd194A3E40c15212984614F715";
+    private String contractAddress = "0x902cD937096aB2e7778cb324d074616E590fA72B";
     private int startRange, endRange;
     Web3j web3j;
 
-    public TrustifyAPIREST(String companyAddress, int startRange, int endRange) throws Exception {
+    public TrustifyContractReader(String companyAddress, int startRange, int endRange) throws Exception {
         if(startRange < 0)
             throw new IllegalArgumentException("Error: startRange can not be negative");
         if(startRange > endRange)

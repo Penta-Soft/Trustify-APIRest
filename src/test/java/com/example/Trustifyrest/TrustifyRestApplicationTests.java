@@ -36,7 +36,7 @@ class TrustifyRestApplicationTests {
 
 	@Test
 	void Insert_a_non_valid_address() throws Exception {
-		final String companyAddress = "/reviews?address=0x20DcB8C5C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=4";
+		final String companyAddress = "/reviews?address=0x20DcB8C5c4C4891DeF4B3f0D8BC2C3EE3595D58&startRange=0&endRange=4";
 		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
 		MvcResult result = mockMvc.perform(request).andReturn();
 		assertEquals("{\"errorMessage\":\"Error: not a valid address\"}",result.getResponse().getContentAsString());
