@@ -3,6 +3,7 @@ package com.example.Trustifyrest;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tuples.generated.Tuple2;
+import org.web3j.tuples.generated.Tuple3;
 import org.web3j.tx.ReadonlyTransactionManager;
 import org.web3j.tx.gas.DefaultGasProvider;
 import java.math.BigInteger;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private String contractAddress = "0x6014e2410251549281BA1B3789263CD76BD4897e";
+    private String contractAddress = "0x539c30a59275613aFd10db02BEfD99Ed147E8F4C";
     private int startRange, endRange;
     Web3j web3j;
 
@@ -38,14 +39,14 @@ public class TrustifyContractReader {
         ReadonlyTransactionManager ReadOnlyManager = new ReadonlyTransactionManager(web3j, addresses.get(0));
 
         Trustify trustify = Trustify.load(contractAddress, web3j, ReadOnlyManager, new DefaultGasProvider());
-        final Tuple2<List<String>, List<BigInteger>> result = trustify.GetNCompanyReview(
+        final Tuple3<List<String>, List<BigInteger>, List<String>> result = trustify.GetNCompanyReview(
                 new BigInteger(Integer.toString(startRange)),
                 new BigInteger(Integer.toString(endRange)),
                 companyAddress).sendAsync().get();
 
         List<Review> reviewList = new ArrayList<>();
         for (int i = 0; i < result.component1().size(); i++) {
-            reviewList.add(new Review(result.component1().get(i), result.component2().get(i).intValue()));
+            reviewList.add(new Review(result.component1().get(i), result.component2().get(i).intValue(), result.component3().get(i)));
         }
 
         return reviewList;

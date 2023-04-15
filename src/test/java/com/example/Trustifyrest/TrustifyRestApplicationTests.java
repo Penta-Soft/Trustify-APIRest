@@ -63,7 +63,7 @@ class TrustifyRestApplicationTests {
 		final String companyAddress = "/reviews?address=0x20DcB8C5c4C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=4";
 		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
 		MvcResult result = mockMvc.perform(request).andReturn();
-		assertEquals("[{\"text\":\"prova prova SASASASASASASASA\",\"stars\":3},{\"text\":\"prova prova SASASASASASASA\",\"stars\":2},{\"text\":\"prova prova SASASASASASA\",\"stars\":1},{\"text\":\"prova prova SASASASASA\",\"stars\":5},{\"text\":\"prova prova SASASASA\",\"stars\":4}]",result.getResponse().getContentAsString());
+		assertEquals("[{\"text\":\"prova prova SASASASASASASASA\",\"stars\":3,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASASASASA\",\"stars\":2,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASASASA\",\"stars\":1,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASASA\",\"stars\":5,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASA\",\"stars\":4,\"state\":\"ACTIVE\"}]",result.getResponse().getContentAsString());
 	}
 
 	@Test
