@@ -12,26 +12,15 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private String contractAddress = "0x539c30a59275613aFd10db02BEfD99Ed147E8F4C";
+    private static final String contractAddress = "0xC3B3Eb5656b404C85FF945317Ca86b9E2dad3a39";
     private int startRange, endRange;
     Web3j web3j;
 
-    public TrustifyContractReader(String companyAddress, int startRange, int endRange) throws Exception {
-        if(startRange < 0)
-            throw new IllegalArgumentException("Error: startRange can not be negative");
-        if(startRange > endRange)
-            throw new IllegalArgumentException("Error: startRange can not be grater that endRange");
-        if(!org.web3j.crypto.WalletUtils.isValidAddress(companyAddress)){
-            throw new IllegalArgumentException("Error: not a valid address");
-        }
-        if((endRange - startRange) > 25){
-            throw new IllegalArgumentException("Error: you can't ask for more than 25 review per call");
-        }
-
-        this.companyAddress = companyAddress;
-        this.startRange = startRange;
-        this.endRange = endRange;
-        web3j = Web3j.build(new HttpService()); // defaults to http://localhost:8545/
+    public TrustifyContractReader(Review_Request review_request) throws Exception {
+        this.companyAddress = review_request.getCompanyAddress();
+        this.startRange= review_request.getStartRange();
+        this.endRange= review_request.getEndRange();
+        web3j = Web3j.build(new HttpService());
     }
 
     public List<Review> getReviews() throws Exception {

@@ -12,9 +12,9 @@ public class SmartContractReaderController {
     @GetMapping("/reviews")
     public List<Review> SmartContractReader(
             @RequestParam(value = "address", defaultValue = "") String address,
-            @RequestParam(value = "startRange", defaultValue = "1") int startRange,
-            @RequestParam(value = "endRange", defaultValue = "10") int endRange) throws Exception {
-        TrustifyContractReader trustify = new TrustifyContractReader(address, startRange, endRange);
+            @RequestParam(value = "startRange") int startRange,
+            @RequestParam(value = "endRange") int endRange) throws Exception {
+        TrustifyContractReader trustify = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
 
             return trustify.getReviews();
     }
