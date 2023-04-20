@@ -18,9 +18,8 @@ public class ErrorResponseHandler extends ResponseEntityExceptionHandler {
             return new ResponseEntity<>(ex, headers, HttpStatus.NOT_FOUND);
         else if(ex.getStatusCode() == HttpStatus.BAD_REQUEST)
             return new ResponseEntity<>(ex, headers, HttpStatus.BAD_REQUEST);
-        else if(ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR)
-            return new ResponseEntity<>(ex,headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        return new ResponseEntity<>(ex, headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        else
+            return new ResponseEntity<>(ex, headers, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
