@@ -25,7 +25,7 @@ public class SmartContractReaderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: contract not found");
         } catch (ConnectException e) {
             System.out.println(e);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection refused");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection failed");
         }
         catch (Exception e){
             System.out.println(e);
