@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.net.ConnectException;
 import java.util.List;
 
 @RestController
@@ -21,8 +22,8 @@ public class SmartContractReaderController {
             return trustify.getReviews();
         } catch (java.util.concurrent.ExecutionException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: contract not found");
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: internal server error");
+        } catch (ConnectException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection refused");
         }
 
     }
