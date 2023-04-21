@@ -12,7 +12,8 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private String contractAddress = "0x39f0C60cE6eBa208E200978e27d7bE86e3C86e1C";
+    private static final String CONTRACT_ADDRESS = "0x180Ab83BB942aAA961A726492897Fd4EcBaDA80E";
+    private static final String DEFAULT_READONLY_ADDRESS = "0x43aB5C6Ea8728c34cc779d9a4f9E2aF8Cd923C5D";
     private int startRange, endRange;
     Web3j web3j;
 
@@ -20,26 +21,26 @@ public class TrustifyContractReader {
         this.companyAddress = request.getCompanyAddress();
         this.startRange = request.getStartRange();
         this.endRange = request.getEndRange();
-        web3j = Web3j.build(new HttpService()); // defaults to http://localhost:8545/
+        web3j = Web3j.build(new HttpService("https://sepolia.infura.io/v3/1caadfe504ce4531b041de4bc8927ceb")); // defaults to http://localhost:8545/
     }
 
     public TrustifyContractReader(String address, int startRange, int endRange) {
         this.companyAddress = address;
         this.startRange = startRange;
         this.endRange = endRange;
-        web3j = Web3j.build(new HttpService()); // defaults to http://localhost:8545/
+        web3j = Web3j.build(new HttpService("https://sepolia.infura.io/v3/1caadfe504ce4531b041de4bc8927ceb")); // defaults to http://localhost:8545/
     }
 
     public List<Review> getReviews() throws Exception {
-        List<String> addresses = web3j.ethAccounts().send().getAccounts();
-        ReadonlyTransactionManager ReadOnlyManager = new ReadonlyTransactionManager(web3j, addresses.get(0));
+        //List<String> addresses = web3j.ethAccounts().send().getAccounts();  //USE THIS ONLY FOR LOCAL GANACHE BLOCKCHAIN
+        ReadonlyTransactionManager ReadOnlyManager = new ReadonlyTransactionManager(web3j, DEFAULT_READONLY_ADDRESS); //FOR LOCAL BLOCKCHAIN USE new ReadonlyTransactionManager(web3j, addresses.get(0));
 
-        Trustify trustify = Trustify.load(contractAddress, web3j, ReadOnlyManager, new DefaultGasProvider());
+        Trustify trustify = Trustify.load(CONTRACT_ADDRESS, web3j, ReadOnlyManager, new DefaultGasProvider());
         List<Review> reviewList = new ArrayList<>();
 
         Tuple3<List<String>, List<BigInteger>, List<String>> result;
 
-        result= trustify.GetNCompanyReview(
+        result= trustify.GetCompanyReview(
                 new BigInteger(Integer.toString(startRange)),
                 new BigInteger(Integer.toString(endRange)),
                 companyAddress).sendAsync().get();
