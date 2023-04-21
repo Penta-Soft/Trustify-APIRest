@@ -20,14 +20,6 @@ public class Review_Request {
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: you can't ask for more than 25 review per call");
         }
     }
-    public int getStartRange() {
-        return startRange;
-    }
-
-    public int getEndRange() {
-        return endRange;
-    }
-
     public void setCompanyAddress(String companyAddress) {
         if(!org.web3j.crypto.WalletUtils.isValidAddress(companyAddress)){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: not a valid address");
@@ -46,6 +38,15 @@ public class Review_Request {
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: startRange can not be grater that endRange");
         this.endRange = endRange;
     }
+
+    public int getStartRange() {
+        return startRange;
+    }
+
+    public int getEndRange() {
+        return endRange;
+    }
+
 
     public String getCompanyAddress() {
         return companyAddress;
