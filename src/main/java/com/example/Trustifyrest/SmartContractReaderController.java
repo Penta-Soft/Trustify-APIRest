@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.net.ConnectException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 public class SmartContractReaderController {
@@ -20,7 +21,7 @@ public class SmartContractReaderController {
         TrustifyContractReader trustify = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
         try {
             return trustify.getReviews();
-        } catch (java.util.concurrent.ExecutionException e) {
+        } catch (ExecutionException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: contract not found");
         } catch (ConnectException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection refused");
