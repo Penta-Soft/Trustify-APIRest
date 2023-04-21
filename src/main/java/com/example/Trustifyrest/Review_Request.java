@@ -1,14 +1,12 @@
 package com.example.Trustifyrest;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
 public class Review_Request {
     private String companyAddress;
     private int startRange, endRange;
-    private static final int maxreviews =25;
+    private static final int MAXREVIEWS =25;
     public Review_Request(String address, int startRange, int endRange) {
         setCompanyAddress(address);
         setStartRange(startRange);
@@ -16,7 +14,7 @@ public class Review_Request {
         checkMaxReviews(startRange, endRange);
     }
     public void checkMaxReviews(int startRange, int endRange) {
-        if((endRange - startRange) > maxreviews) {
+        if((endRange - startRange) > MAXREVIEWS) {
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: you can't ask for more than 25 review per call");
         }
     }

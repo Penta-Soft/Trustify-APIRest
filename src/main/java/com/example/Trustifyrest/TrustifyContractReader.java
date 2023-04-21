@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private String contractAddress = "0x7C809E06675E12A65643dD591729B7403Bb72D17";
+    private String contractAddress = "0x39f0C60cE6eBa208E200978e27d7bE86e3C86e1C";
     private int startRange, endRange;
     Web3j web3j;
 
@@ -45,9 +45,6 @@ public class TrustifyContractReader {
                 new BigInteger(Integer.toString(startRange)),
                 new BigInteger(Integer.toString(endRange)),
                 companyAddress).sendAsync().get();
-
-
-
             for (int i = 0; i < result.component1().size(); i++) {
                 reviewList.add(new Review(result.component1().get(i), result.component2().get(i).intValue(), result.component3().get(i)));}
 
