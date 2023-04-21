@@ -1,13 +1,11 @@
 package com.example.Trustifyrest;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
-import org.web3j.tuples.generated.Tuple2;
 import org.web3j.tuples.generated.Tuple3;
 import org.web3j.tx.ReadonlyTransactionManager;
 import org.web3j.tx.gas.DefaultGasProvider;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
