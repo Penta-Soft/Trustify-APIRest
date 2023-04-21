@@ -1,5 +1,10 @@
 package com.example.Trustifyrest;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
+
 public class Review_Request {
     private String companyAddress;
     private int startRange, endRange;
@@ -12,7 +17,7 @@ public class Review_Request {
     }
     public void checkMaxReviews(int startRange, int endRange) {
         if((endRange - startRange) > maxreviews) {
-            throw new IllegalArgumentException("Error: you can't ask for more than 25 review per call");
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: you can't ask for more than 25 review per call");
         }
     }
     public int getStartRange() {
@@ -25,20 +30,20 @@ public class Review_Request {
 
     public void setCompanyAddress(String companyAddress) {
         if(!org.web3j.crypto.WalletUtils.isValidAddress(companyAddress)){
-            throw new IllegalArgumentException("Error: not a valid address");
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: not a valid address");
         }
         this.companyAddress = companyAddress;
     }
 
     public void setStartRange(int startRange) {
         if(startRange < 0)
-            throw new IllegalArgumentException("Error: startRange can not be negative");
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: startRange can not be negative");
         this.startRange = startRange;
     }
 
     public void setEndRange(int endRange) {
         if(startRange > endRange)
-            throw new IllegalArgumentException("Error: startRange can not be grater that endRange");
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error: startRange can not be grater that endRange");
         this.endRange = endRange;
     }
 
