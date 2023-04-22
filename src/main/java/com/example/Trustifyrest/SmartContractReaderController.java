@@ -21,17 +21,16 @@ public class SmartContractReaderController {
             @RequestParam(value = "address") String address,
             @RequestParam(value = "startRange") int startRange,
             @RequestParam(value = "endRange") int endRange) throws Exception {
-        TrustifyContractReader trustify = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
-        List<Review> l = new ArrayList<>();
+        TrustifyContractReader reader = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
+        List<Review> l;
         try {
-            l=trustify.getReviews();
+            l=reader.getReviews();
 
         } catch (ExecutionException e) {
             if(e.getCause() instanceof ContractCallException)
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error: This company have not received any reviews yet");
             else
-                if(e.getCause() instanceof  IndexOutOfBoundsException)
-                    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: Contract is not deployed yet");
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: Contract is not deployed yet");
         }
         catch (ConnectException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection failed");
@@ -39,6 +38,10 @@ public class SmartContractReaderController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: unknown error");
         }
     return l;
+    }
+    @GetMapping("/*")
+    public void ExceptionHttpRequestController() {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: the requested resource was not found");
     }
 
 
