@@ -24,12 +24,7 @@ public class TrustifyContractReader {
         web3j = Web3j.build(new HttpService("https://sepolia.infura.io/v3/1caadfe504ce4531b041de4bc8927ceb")); // defaults to http://localhost:8545/
     }
 
-    public TrustifyContractReader(String address, int startRange, int endRange) {
-        this.companyAddress = address;
-        this.startRange = startRange;
-        this.endRange = endRange;
-        web3j = Web3j.build(new HttpService("https://sepolia.infura.io/v3/1caadfe504ce4531b041de4bc8927ceb")); // defaults to http://localhost:8545/
-    }
+
 
     public List<Review> getReviews() throws Exception {
         //List<String> addresses = web3j.ethAccounts().send().getAccounts();  //USE THIS ONLY FOR LOCAL GANACHE BLOCKCHAIN
