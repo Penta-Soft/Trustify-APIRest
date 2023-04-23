@@ -39,7 +39,7 @@ class TrustifyRestApplicationTests {
 		final String companyAddress = "/reviews?address=0x20DcB8C5c4C4891DeF4B3f0D8BC2C3EE3595D58&startRange=0&endRange=4";
 		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
 		MvcResult result = mockMvc.perform(request).andReturn();
-		assertEquals("400 BAD_REQUEST \"Error: not a valid address\"",result.getResponse().getContentAsString());
+		assertEquals("400 BAD_REQUEST \"Error: address is not valid\"",result.getResponse().getContentAsString());
 	}
 
 	@Test
@@ -73,7 +73,7 @@ class TrustifyRestApplicationTests {
 		final String companyAddress = "/reviews?address=0x20DcB1C5c4C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=4";
 		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
 		MvcResult result = mockMvc.perform(request).andReturn();
-		assertEquals("Error: this company have not received any reviews",result.getResponse().getContentAsString());
+		assertEquals("400 BAD_REQUEST \"Error: This company have not received any reviews yet\"",result.getResponse().getContentAsString());
 	}
 
 	@Test
