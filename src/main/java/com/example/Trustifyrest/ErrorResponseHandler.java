@@ -21,7 +21,7 @@ public class ErrorResponseHandler extends ResponseEntityExceptionHandler  {
         return new ResponseEntity<>(new ResponseStatusException(HttpStatus.BAD_REQUEST,ex.getMessage()).getMessage(), headers, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<Object> handleAnyException(ResponseStatusException ex){
+    public ResponseEntity<Object> handleException(ResponseStatusException ex){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
         if(ex.getStatusCode() == HttpStatus.NOT_FOUND)

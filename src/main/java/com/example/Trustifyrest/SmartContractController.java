@@ -8,39 +8,39 @@ import org.springframework.web.server.ResponseStatusException;
 import org.web3j.tx.exceptions.ContractCallException;
 
 import java.net.ConnectException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-public class SmartContractReaderController {
-
+public class SmartContractController {
+    private TrustifyContractReader reader;
     @GetMapping("/reviews")
-
-    public List<Review> SmartContractReaderController(
+    public List<Review> SmartContractController(
             @RequestParam(value = "address") String address,
             @RequestParam(value = "startRange") int startRange,
             @RequestParam(value = "endRange") int endRange) throws Exception {
-        TrustifyContractReader reader = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
+         reader = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
+         return getReviews(reader);
+    }
+    public List<Review> getReviews(TrustifyContractReader reader) {
         List<Review> l;
         try {
-            l=reader.getReviews();
+            l = reader.getReviews();
 
         } catch (ExecutionException e) {
-            if(e.getCause() instanceof ContractCallException)
+            if (e.getCause() instanceof ContractCallException)
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error: This company have not received any reviews yet");
             else
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: Contract is not deployed yet");
-        }
-        catch (ConnectException e) {
+        } catch (ConnectException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection failed");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: unknown error");
         }
-    return l;
+        return l;
     }
     @GetMapping("/*")
-    public void ExceptionHttpRequestController() {
+    public void ExceptionHandlerHttpRequestController() {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error: the requested resource was not found");
     }
 
