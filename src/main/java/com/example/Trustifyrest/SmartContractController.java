@@ -15,29 +15,27 @@ import java.util.concurrent.ExecutionException;
 public class SmartContractController {
     private TrustifyContractReader reader;
     @GetMapping("/reviews")
-    public List<Review> SmartContractController(
+    public List<Review> getReviews(
             @RequestParam(value = "address") String address,
             @RequestParam(value = "startRange") int startRange,
             @RequestParam(value = "endRange") int endRange) throws Exception {
          reader = new TrustifyContractReader(new Review_Request(address, startRange, endRange));
-         return getReviews(reader);
-    }
-    public List<Review> getReviews(TrustifyContractReader reader) {
         List<Review> l;
         try {
-            l = reader.getReviews();
+            l=reader.getReviews();
 
         } catch (ExecutionException e) {
-            if (e.getCause() instanceof ContractCallException)
+            if(e.getCause() instanceof ContractCallException)
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error: This company have not received any reviews yet");
             else
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: Contract is not deployed yet");
-        } catch (ConnectException e) {
+        }
+        catch (ConnectException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: connection failed");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: unknown error");
         }
-        return l;
+    return l;
     }
     @GetMapping("/*")
     public void ExceptionHandlerHttpRequestController() {
