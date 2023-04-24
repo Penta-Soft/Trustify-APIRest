@@ -1,31 +1,14 @@
 package com.example.Trustifyrest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.RemoteFunctionCall;
-import org.web3j.protocol.core.Request;
-import org.web3j.protocol.core.methods.response.EthAccounts;
-import org.web3j.protocol.http.HttpService;
-import org.web3j.tuples.generated.Tuple2;
-
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 
 @WebMvcTest(SmartContractController.class)
