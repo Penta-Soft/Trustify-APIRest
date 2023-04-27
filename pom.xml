@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>Pentasoft_Trustify</groupId>
-	<artifactId>Trustify_API-Rest</artifactId>
+	<artifactId>Trustify_REST-API</artifactId>
 	<version>1.0.0</version>
-	<name>Trustify_API-Rest</name>
+	<name>Trustify_REST-API</name>
 	<description>REST-API for retrieving activity reviews</description>
 	<properties>
 		<java.version>18</java.version>
