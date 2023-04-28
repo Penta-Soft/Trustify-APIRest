@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private static final String CONTRACT_ADDRESS = "0x180Ab83BB942aAA961A726492897Fd4EcBaDA80E";
+    private static final String CONTRACT_ADDRESS = "0x45d66c4f3B299a56Ddb4283851BaC8dA52a0e477";
     private static final String DEFAULT_READONLY_ADDRESS = "0x43aB5C6Ea8728c34cc779d9a4f9E2aF8Cd923C5D";
     private int startRange, endRange;
     Web3j web3j;
@@ -35,7 +35,7 @@ public class TrustifyContractReader {
 
         Tuple3<List<String>, List<BigInteger>, List<String>> result;
 
-        result= trustify.GetCompanyReview(
+        result= trustify.getCompanyReview(
                 new BigInteger(Integer.toString(startRange)),
                 new BigInteger(Integer.toString(endRange)),
                 companyAddress).sendAsync().get();
