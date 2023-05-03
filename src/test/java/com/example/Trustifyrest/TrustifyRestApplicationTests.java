@@ -49,15 +49,15 @@ class TrustifyRestApplicationTests {
 		assertEquals("400 BAD_REQUEST \"Error: startRange can not be grater that endRange\"",result.getResponse().getContentAsString());
 	}
 
-	/*
+
 	@Test
-	void Call_for_5_review () throws Exception{
-		final String companyAddress = "/reviews?address=0x20DcB8C5c4C4891DeF4B3f0D8BC2C3EEE3595D58&startRange=0&endRange=4";
+	void Ask_for_a_review () throws Exception{
+		final String companyAddress = "/reviews?address=0x96A85348123DfAd720fFa6193dE5c9792BB65C5e&startRange=0&endRange=1";
 		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
 		MvcResult result = mockMvc.perform(request).andReturn();
-		assertEquals("[{\"text\":\"prova prova SASASASASASASASA\",\"stars\":3,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASASASASA\",\"stars\":2,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASASASA\",\"stars\":1,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASASA\",\"stars\":5,\"state\":\"ACTIVE\"},{\"text\":\"prova prova SASASASA\",\"stars\":4,\"state\":\"ACTIVE\"}]",result.getResponse().getContentAsString());
+		assertEquals("[{\"text\":\"Che bello questo contratto nuovo!\",\"stars\":5,\"state\":\"ACTIVE\"}]",result.getResponse().getContentAsString());
 	}
-	*/
+
 
 	@Test
 	void Call_for_a_company_without_any_reviews () throws Exception{
