@@ -15,7 +15,7 @@ public class TrustifyContractReader {
     private static final String CONTRACT_ADDRESS = "0x45d66c4f3B299a56Ddb4283851BaC8dA52a0e477";
     private static final String DEFAULT_READONLY_ADDRESS = "0x43aB5C6Ea8728c34cc779d9a4f9E2aF8Cd923C5D";
     private int startRange, endRange;
-    Web3j web3j;
+    private Web3j web3j;
 
     public TrustifyContractReader(Review_Request request) throws Exception {
         this.companyAddress = request.getCompanyAddress();
