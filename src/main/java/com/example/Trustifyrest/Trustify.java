@@ -54,22 +54,17 @@ public class Trustify extends Contract {
                 new org.web3j.abi.datatypes.generated.Uint256(end), 
                 new org.web3j.abi.datatypes.Address(160, companyAddress)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<DynamicArray<Utf8String>>() {}, new TypeReference<DynamicArray<Uint8>>() {}, new TypeReference<DynamicArray<Utf8String>>() {}));
-        return new RemoteFunctionCall<Tuple3<List<String>, List<BigInteger>, List<String>>>(function,
-                new Callable<Tuple3<List<String>, List<BigInteger>, List<String>>>() {
-                    @Override
-                    public Tuple3<List<String>, List<BigInteger>, List<String>> call() throws Exception {
-                        List<Type> results = executeCallMultipleValueReturn(function);
-                        return new Tuple3<List<String>, List<BigInteger>, List<String>>(
-                                convertToNative((List<Utf8String>) results.get(0).getValue()), 
-                                convertToNative((List<Uint8>) results.get(1).getValue()), 
-                                convertToNative((List<Utf8String>) results.get(2).getValue()));
-                    }
+        return new RemoteFunctionCall<>(function,
+                () -> {
+                    List<Type> results = executeCallMultipleValueReturn(function);
+                    return new Tuple3<>(
+                            convertToNative((List<Utf8String>) results.get(0).getValue()),
+                            convertToNative((List<Uint8>) results.get(1).getValue()),
+                            convertToNative((List<Utf8String>) results.get(2).getValue()));
                 });
     }
 
-    public static Trustify load(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
-        return new Trustify(contractAddress, web3j, credentials, contractGasProvider);
-    }
+
 
     public static Trustify load(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
         return new Trustify(contractAddress, web3j, transactionManager, contractGasProvider);
