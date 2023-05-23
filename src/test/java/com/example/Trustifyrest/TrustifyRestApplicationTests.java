@@ -52,10 +52,10 @@ class TrustifyRestApplicationTests {
 
 	@Test
 	void Ask_for_a_review () throws Exception{
-		final String companyAddress = "/reviews?address=0x96A85348123DfAd720fFa6193dE5c9792BB65C5e&startRange=0&endRange=1";
+		final String companyAddress = "/reviews?address=0xB114A1015d4f5f99750C325c146C7B1429139828&startRange=0&endRange=1";
 		RequestBuilder request = MockMvcRequestBuilders.get(companyAddress);
 		MvcResult result = mockMvc.perform(request).andReturn();
-		assertEquals("[{\"text\":\"Che bello questo contratto nuovo!\",\"stars\":5,\"state\":\"ACTIVE\"}]",result.getResponse().getContentAsString());
+		assertEquals("[{\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed suscipit massa. In non consequat nisi, sit amet ornare orci.\",\"stars\":5,\"state\":\"DELETED\"}]",result.getResponse().getContentAsString());
 	}
 
 

@@ -12,8 +12,8 @@ import java.util.List;
 
 public class TrustifyContractReader {
     private String companyAddress;
-    private static final String CONTRACT_ADDRESS = "0x45d66c4f3B299a56Ddb4283851BaC8dA52a0e477";
-    private static final String DEFAULT_READONLY_ADDRESS = "0x43aB5C6Ea8728c34cc779d9a4f9E2aF8Cd923C5D";
+    private static final String CONTRACT_ADDRESS = "0x3361fe8BfD202239d43325a053C7Cac246517a98";
+    private static final String DEFAULT_READONLY_ADDRESS = "0xB114A1015d4f5f99750C325c146C7B1429139828";
     private int startRange, endRange;
     private Web3j web3j;
 
